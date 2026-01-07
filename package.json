@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "postbuild": "node -e \"require('fs').writeFileSync('out/.nojekyll','')\"",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out --dotfiles -f"
+    
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

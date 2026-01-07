@@ -151,7 +151,7 @@ const HeroSection = ({ currentLanguage }: HeroSectionProps) => {
           <div className="relative">
             <div className="relative rounded-card overflow-hidden shadow-card">
              <AppImage
-  src="/assets/images/Asma.jpg"
+  src="/images/Asma.jpg"
   alt="Female veterinarian in white coat examining a golden retriever dog with a stethoscope in a modern clinic"
   className="w-full h-[500px] lg:h-[600px] object-cover"
 />
