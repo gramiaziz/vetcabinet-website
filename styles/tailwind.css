@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Brand Colors */
+    --color-primary: #FF6B35; /* orange-600 - Core brand warmth */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Brand Colors */
+    --color-secondary: #F7931E; /* orange-500 - Gradient partner */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #FF69B4; /* pink-500 - Trust moments */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Background Colors */
+    --color-background: #FFFFFF; /* white - Clean medical canvas */
+    --color-foreground: #1A1A1A; /* gray-900 - Primary text */
+    
+    /* Surface Colors */
+    --color-card: #F8F9FA; /* gray-50 - Subtle card depth */
+    --color-card-foreground: #1A1A1A; /* gray-900 */
+    
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1A1A1A; /* gray-900 */
+    
+    /* Muted Colors */
+    --color-muted: #F8F9FA; /* gray-50 */
+    --color-muted-foreground: #6C757D; /* gray-600 - Secondary text */
+    
+    /* Border & Input */
+    --color-border: #E9ECEF; /* gray-200 */
+    --color-input: #E9ECEF; /* gray-200 */
+    --color-ring: #FF6B35; /* orange-600 */
+    
+    /* Semantic Colors */
+    --color-success: #28A745; /* green-600 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    --color-warning: #FFC107; /* yellow-500 */
+    --color-warning-foreground: #1A1A1A; /* gray-900 */
+    
+    --color-error: #DC3545; /* red-600 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #DC3545; /* red-600 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Additional Brand Colors */
+    --color-trust: #2C3E50; /* blue-gray-800 - Medical authority */
+    --color-trust-foreground: #FFFFFF; /* white */
+    
+    --color-whatsapp: #25D366; /* whatsapp-green */
+    --color-whatsapp-foreground: #FFFFFF; /* white */
+    
+    --color-gold: #FFD700; /* gold - Authority halo */
+    --color-gold-foreground: #1A1A1A; /* gray-900 */
+    
+    /* Spacing & Layout */
+    --spacing-grid: 24px;
+    --spacing-mobile: 36px;
+    
+    /* Border Radius */
+    --radius-card: 16px;
+    --radius-button: 8px;
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-interactive: 0 8px 24px rgba(255, 107, 53, 0.12);
+    --shadow-emergency: 0 8px 16px rgba(255, 107, 53, 0.2);
+    --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FF69B4 100%);
+  }
+  
+  .gradient-primary-hover {
+    background: linear-gradient(135deg, #F7931E 0%, #FF6B35 50%, #FF69B4 100%);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-interactive {
+    box-shadow: var(--shadow-interactive);
+  }
+  
+  .shadow-emergency {
+    box-shadow: var(--shadow-emergency);
+  }
+  
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
+  }
+  
+  .animate-pulse-emergency {
+    animation: pulse-emergency 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-emergency {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 20px rgba(255, 107, 53, 0);
+    }
+  }
+  
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .transition-fast {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
