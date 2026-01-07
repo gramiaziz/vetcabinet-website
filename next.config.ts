@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
-const repoName = "vetcabinet-website";
+const repo = "vetcabinet-website";
+const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: `/${repoName}`,
+  basePath: isProd ? `/${repo}` : "",
   images: { unoptimized: true },
 };
 
