@@ -97,42 +97,41 @@ function AppImage({
         );
     }
 
-    // For local images and data URLs, use Next.js Image component
-    const imageProps = {
-        src: imageSrc,
-        alt,
-        className: commonClassName,
-        priority,
-        quality,
-        placeholder,
-        blurDataURL,
-        unoptimized: true,
-        onError: handleError,
-        onLoad: handleLoad,
-        onClick,
-        ...props,
-    };
+// For static export (GitHub Pages), using <img> is the most reliable for local files
+const imgStyle: React.CSSProperties = {};
+if (width) imgStyle.width = width;
+if (height) imgStyle.height = height;
 
-    if (fill) {
-        return (
-            <div className={`relative ${className}`}>
-                <Image
-                    {...imageProps}
-                    fill
-                    sizes={sizes || '100vw'}
-                    style={{ objectFit: 'cover' }}
-                />
-            </div>
-        );
-    }
+if (fill) {
+  return (
+    <div className={`relative ${className}`} style={{ width: width || "100%", height: height || "100%" }}>
+      <img
+        src={imageSrc}
+        alt={alt}
+        className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
+        onError={handleError}
+        onLoad={handleLoad}
+        onClick={onClick}
+        style={imgStyle}
+        {...props}
+      />
+    </div>
+  );
+}
 
-    return (
-        <Image
-            {...imageProps}
-            width={width || 400}
-            height={height || 300}
-        />
-    );
+return (
+  <img
+    src={imageSrc}
+    alt={alt}
+    className={commonClassName}
+    onError={handleError}
+    onLoad={handleLoad}
+    onClick={onClick}
+    style={imgStyle}
+    {...props}
+  />
+);
+
 }
 
 export default AppImage;
