@@ -161,7 +161,7 @@ const HeroSection = ({ currentLanguage }: HeroSectionProps) => {
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-4 border-primary">
                     <AppImage
-src="/assets/images/Asma.jpg"
+src="/images/Asma.jpg"
                       alt="Professional headshot of Dr. Asma GNAOUI, female veterinarian with dark hair in medical scrubs smiling at camera"
                       className="w-full h-full object-cover" />
 
