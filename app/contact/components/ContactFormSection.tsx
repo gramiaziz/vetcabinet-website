@@ -78,13 +78,37 @@ const handleSubmit = async (e: React.FormEvent) => {
   setSubmitStatus("idle");
 
   try {
-    const res = await fetch("/api/appointments", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...formData, currentLanguage }),
+    const scriptUrl =
+      "https://script.google.com/macros/s/AKfycbyN0LfUnnL_q-2iGw5LLrbcKZBSJ9OzOuJouJltZ_mkVhSdVYRV8hGVNZzd3IFqNKyL8w/exec";
+
+    const body = new URLSearchParams({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      petType: formData.petType,
+      petName: formData.petName,
+      appointmentDate: formData.appointmentDate,
+      appointmentTime: formData.appointmentTime,
+      message: formData.message,
+      currentLanguage,
     });
 
-    const json = await res.json();
+    const res = await fetch(scriptUrl, {
+      method: "POST",
+      body,
+    });
+
+    const text = await res.text();
+let json: any;
+
+try {
+  json = JSON.parse(text);
+} catch {
+  throw new Error("Non-JSON response from Apps Script: " + text.slice(0, 120));
+}
+
+if (!json.ok) throw new Error(json.error || "Failed");
+
     if (!json.ok) throw new Error(json.error || "Failed");
 
     setSubmitStatus("success");
@@ -106,6 +130,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     setTimeout(() => setSubmitStatus("idle"), 5000);
   }
 };
+
 
   return (
     <div className="bg-card rounded-card p-8 shadow-card">
