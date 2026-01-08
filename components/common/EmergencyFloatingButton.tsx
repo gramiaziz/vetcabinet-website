@@ -16,7 +16,7 @@ const EmergencyFloatingButton = ({ className = '' }: EmergencyFloatingButtonProp
       label: 'Appeler',
       labelAr: 'اتصل',
       icon: 'PhoneIcon',
-      href: 'tel:+21612345678',
+      href: 'tel:+21694273313',
       color: 'bg-error hover:bg-error/90',
     },
     {
@@ -24,7 +24,7 @@ const EmergencyFloatingButton = ({ className = '' }: EmergencyFloatingButtonProp
       label: 'WhatsApp',
       labelAr: 'واتساب',
       icon: 'ChatBubbleLeftRightIcon',
-      href: 'https://wa.me/21612345678?text=Urgence%20vétérinaire',
+      href: 'https://wa.me/21694273313?text=Urgence%20vétérinaire',
       color: 'bg-whatsapp hover:bg-whatsapp/90',
     },
     {
@@ -32,7 +32,7 @@ const EmergencyFloatingButton = ({ className = '' }: EmergencyFloatingButtonProp
       label: 'Directions',
       labelAr: 'الاتجاهات',
       icon: 'MapPinIcon',
-      href: 'https://maps.google.com/?q=Manouba,Tunisia',
+      href: 'https://www.google.com/maps/place/ANIMAUX+D\'ABORD+Cabinet+V%C3%A9t%C3%A9rinaire+Manouba+%D8%A7%D9%84%D8%B9%D9%8A%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D8%A8%D9%8A%D8%B7%D8%B1%D9%8A%D8%A9+%D8%A8%D9%85%D9%86%D9%88%D8%A8%D8%A9%E2%80%AD/@36.8054382,10.1031233,17z/data=!3m1!4b1!4m6!3m5!1s0x12fd330007604f6b:0xe07d665a602886a8!8m2!3d36.8054382!4d10.1056982!16s%2Fg%2F11m75dxc9s?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D',
       color: 'bg-primary hover:bg-primary/90',
     },
   ];
