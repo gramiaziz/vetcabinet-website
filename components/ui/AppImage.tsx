@@ -1,137 +1,106 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 interface AppImageProps {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    className?: string;
-    priority?: boolean;
-    quality?: number;
-    placeholder?: 'blur' | 'empty';
-    blurDataURL?: string;
-    fill?: boolean;
-    sizes?: string;
-    onClick?: () => void;
-    fallbackSrc?: string;
-    [key: string]: any;
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+  priority?: boolean;
+  quality?: number;
+  placeholder?: 'blur' | 'empty';
+  blurDataURL?: string;
+  fill?: boolean;
+  sizes?: string;
+  onClick?: () => void;
+  fallbackSrc?: string;
+  [key: string]: any;
 }
 
 function AppImage({
-    src,
-    alt,
-    width,
-    height,
-    className = '',
-    priority = false,
-    quality = 75,
-    placeholder = 'empty',
-    blurDataURL,
-    fill = false,
-    sizes,
-    onClick,
-    fallbackSrc = '/assets/images/no_image.png',
-    ...props
+  src,
+  alt,
+  width,
+  height,
+  className = '',
+  priority = false,
+  quality = 75,
+  placeholder = 'empty',
+  blurDataURL,
+  fill = false,
+  sizes,
+  onClick,
+  fallbackSrc = '/assets/images/no_image.png',
+  ...props
 }: AppImageProps) {
-    const [imageSrc, setImageSrc] = useState(src);
-    const [isLoading, setIsLoading] = useState(true);
-    const [hasError, setHasError] = useState(false);
+  const [imageSrc, setImageSrc] = useState(src);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
-    // More reliable external URL detection
-    const isExternal = imageSrc.startsWith('http://') || imageSrc.startsWith('https://');
-    const isLocal = imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:');
+  // ✅ basePath-aware src (GitHub Pages)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const resolvedSrc =
+    imageSrc.startsWith('/') && basePath && !imageSrc.startsWith(basePath + '/')
+      ? `${basePath}${imageSrc}`
+      : imageSrc;
 
-    const handleError = () => {
-        if (!hasError && imageSrc !== fallbackSrc) {
-            setImageSrc(fallbackSrc);
-            setHasError(true);
-        }
-        setIsLoading(false);
-    };
+  // external URL detection (use resolvedSrc here too)
+  const isExternal = resolvedSrc.startsWith('http://') || resolvedSrc.startsWith('https://');
+  const isLocal = resolvedSrc.startsWith('/') || resolvedSrc.startsWith('./') || resolvedSrc.startsWith('data:');
 
-    const handleLoad = () => {
-        setIsLoading(false);
-        setHasError(false);
-    };
-
-    const commonClassName = `${className} ${isLoading ? 'bg-gray-200' : ''} ${onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`;
-
-    // For external URLs or when in doubt, use regular img tag
-    if (isExternal && !isLocal) {
-        const imgStyle: React.CSSProperties = {};
-
-        if (width) imgStyle.width = width;
-        if (height) imgStyle.height = height;
-
-        if (fill) {
-            return (
-                <div className={`relative ${className}`} style={{ width: width || '100%', height: height || '100%' }}>
-                    <img
-                        src={imageSrc}
-                        alt={alt}
-                        className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
-                        onError={handleError}
-                        onLoad={handleLoad}
-                        onClick={onClick}
-                        style={imgStyle}
-                        {...props}
-                    />
-                </div>
-            );
-        }
-
-        return (
-            <img
-                src={imageSrc}
-                alt={alt}
-                className={commonClassName}
-                onError={handleError}
-                onLoad={handleLoad}
-                onClick={onClick}
-                style={imgStyle}
-                {...props}
-            />
-        );
+  const handleError = () => {
+    if (!hasError && imageSrc !== fallbackSrc) {
+      setImageSrc(fallbackSrc);
+      setHasError(true);
     }
+    setIsLoading(false);
+  };
 
-// For static export (GitHub Pages), using <img> is the most reliable for local files
-const imgStyle: React.CSSProperties = {};
-if (width) imgStyle.width = width;
-if (height) imgStyle.height = height;
+  const handleLoad = () => {
+    setIsLoading(false);
+    setHasError(false);
+  };
 
-if (fill) {
+  const commonClassName = `${className} ${isLoading ? 'bg-gray-200' : ''} ${
+    onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''
+  }`;
+
+  const imgStyle: React.CSSProperties = {};
+  if (width) imgStyle.width = width;
+  if (height) imgStyle.height = height;
+
+  // ✅ Use <img> for everything (simplest + works on GitHub Pages export)
+  if (fill) {
+    return (
+      <div className={`relative ${className}`} style={{ width: width || '100%', height: height || '100%' }}>
+        <img
+          src={resolvedSrc}   // ✅ CHANGED
+          alt={alt}
+          className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
+          onError={handleError}
+          onLoad={handleLoad}
+          onClick={onClick}
+          style={imgStyle}
+          {...props}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className={`relative ${className}`} style={{ width: width || "100%", height: height || "100%" }}>
-      <img
-        src={imageSrc}
-        alt={alt}
-        className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
-        onError={handleError}
-        onLoad={handleLoad}
-        onClick={onClick}
-        style={imgStyle}
-        {...props}
-      />
-    </div>
+    <img
+      src={resolvedSrc}     // ✅ CHANGED
+      alt={alt}
+      className={commonClassName}
+      onError={handleError}
+      onLoad={handleLoad}
+      onClick={onClick}
+      style={imgStyle}
+      {...props}
+    />
   );
-}
-
-return (
-  <img
-    src={imageSrc}
-    alt={alt}
-    className={commonClassName}
-    onError={handleError}
-    onLoad={handleLoad}
-    onClick={onClick}
-    style={imgStyle}
-    {...props}
-  />
-);
-
 }
 
 export default AppImage;
