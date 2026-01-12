@@ -48,7 +48,7 @@ const EmergencyFloatingButton = ({ className = '' }: EmergencyFloatingButtonProp
               href={contact.href}
               target={contact.type === 'location' || contact.type === 'whatsapp' ? '_blank' : undefined}
               rel={contact.type === 'location' || contact.type === 'whatsapp' ? 'noopener noreferrer' : undefined}
-              className={`flex items-center space-x-3 px-4 py-3 ${contact.color} text-white rounded-button shadow-interactive transition-all hover:scale-105`}
+              className={`flex items-center gap-3 px-4 py-3 ${contact.color} text-white rounded-button shadow-interactive transition-all hover:scale-105`}
             >
               <Icon name={contact.icon as any} size={20} />
               <span className="font-heading font-semibold text-sm whitespace-nowrap">

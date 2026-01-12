@@ -9,17 +9,14 @@ import ServicesGrid from './ServicesGrid';
 import TestimonialCarousel from './TestimonialCarousel';
 import LocationSection from './LocationSection';
 import Footer from './Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HomepageInteractive = () => {
-  const [currentLanguage, setCurrentLanguage] = useState<'fr' | 'ar'>('fr');
+    const { currentLanguage } = useLanguage();
   const [isHydrated, setIsHydrated] = useState(false);
 
-  useEffect(() => {
+ useEffect(() => {
     setIsHydrated(true);
-    const savedLanguage = localStorage.getItem('preferredLanguage') as 'fr' | 'ar' | null;
-    if (savedLanguage) {
-      setCurrentLanguage(savedLanguage);
-    }
   }, []);
 
   useEffect(() => {

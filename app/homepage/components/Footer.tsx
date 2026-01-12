@@ -36,7 +36,7 @@ const Footer = ({ currentLanguage }: FooterProps) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-3">
               <div className="relative w-12 h-12">
                 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                   <defs>
@@ -118,22 +118,22 @@ const Footer = ({ currentLanguage }: FooterProps) => {
             <h3 className="font-heading font-bold text-lg mb-6">
               {currentLanguage === 'fr' ? 'Contact' : 'اتصل'}
             </h3>
-            <div className="space-y-4">
+            <div className="gap-4">
               <a
                 href="tel:+21612345678"
-                className="flex items-start space-x-3 text-sm opacity-80 hover:opacity-100 transition-opacity group"
+                className="flex items-start gap-3 text-sm opacity-80 hover:opacity-100 transition-opacity group"
               >
                 <Icon name="PhoneIcon" size={18} className="text-primary mt-0.5 group-hover:scale-110 transition-transform" />
                 <span>+216 94 273 313</span>
               </a>
               <a
                 href="mailto:contact@animauxdabord.tn"
-                className="flex items-start space-x-3 text-sm opacity-80 hover:opacity-100 transition-opacity group"
+                className="flex items-start gap-3 text-sm opacity-80 hover:opacity-100 transition-opacity group"
               >
                 <Icon name="EnvelopeIcon" size={18} className="text-primary mt-0.5 group-hover:scale-110 transition-transform" />
                 <span>contact@animauxdabord.tn</span>
               </a>
-              <div className="flex items-start space-x-3 text-sm opacity-80">
+              <div className="flex items-start gap-3 text-sm opacity-80">
                 <Icon name="MapPinIcon" size={18} className="text-primary mt-0.5" />
                 <span>
                   {currentLanguage === 'fr' ?'Rue de la Santé, Manouba 2010, Tunisie' :'شارع الصحة، منوبة 2010، تونس'}
@@ -146,7 +146,7 @@ const Footer = ({ currentLanguage }: FooterProps) => {
               <h4 className="font-heading font-semibold text-sm mb-3">
                 {currentLanguage === 'fr' ? 'Suivez-nous' : 'تابعنا'}
               </h4>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <a
                   href="https://facebook.com"
                   target="_blank"
@@ -183,7 +183,7 @@ const Footer = ({ currentLanguage }: FooterProps) => {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:space-y-0">
             <p className="text-sm opacity-80 text-center md:text-left">
               &copy; {currentYear} ANIMAUX D&apos;ABORD. {currentLanguage === 'fr' ? 'Tous droits réservés.' : 'جميع الحقوق محفوظة.'}
             </p>

@@ -22,16 +22,78 @@ const BookingModal = ({ isOpen, onClose, serviceId, currentLanguage }: BookingMo
     time: '',
     message: '',
   });
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(currentLanguage === 'fr' ?'Rendez-vous confirmé ! Nous vous contacterons bientôt.' :'تم تأكيد الموعد! سنتصل بك قريبًا.');
-    onClose();
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus('idle');
+
+  try {
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!;
+
+    const body = new URLSearchParams({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+
+      // map modal fields to your sheet columns
+      petType: formData.animalType,
+      petName: formData.animalName,
+      appointmentDate: formData.date,
+      appointmentTime: formData.time,
+      message: formData.message,
+
+      // extra fields (optional but useful)
+      serviceId,
+      currentLanguage,
+      source: 'booking_modal',
+    });
+
+    const res = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, { method: "POST", body });
+    const text = await res.text();
+
+    let json: any;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      throw new Error("Non-JSON response from Apps Script: " + text.slice(0, 120));
+    }
+
+    if (!json.ok) throw new Error(json.error || "Failed");
+
+    setSubmitStatus('success');
+
+    // reset + close after a moment
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      animalType: '',
+      animalName: '',
+      date: '',
+      time: '',
+      message: '',
+    });
+
+    setTimeout(() => {
+      onClose();
+      setSubmitStatus('idle');
+    }, 1200);
+  } catch (err) {
+    console.error(err);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitStatus('idle'), 5000);
+  }
+};
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -64,6 +126,30 @@ const BookingModal = ({ isOpen, onClose, serviceId, currentLanguage }: BookingMo
         </div>
 
         {/* Modal Body */}
+        {submitStatus === 'success' && (
+  <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-button flex items-start gap-3">
+    <Icon name="CheckCircleIcon" size={22} className="text-success flex-shrink-0" variant="solid" />
+    <div>
+      <p className="font-semibold text-success">
+        {currentLanguage === 'fr' ? 'Demande envoyée !' : 'تم إرسال الطلب!'}
+      </p>
+      <p className="text-sm text-muted-foreground">
+        {currentLanguage === 'fr'
+          ? "Nous vous contacterons pour confirmer le rendez-vous."
+          : "سنتصل بك لتأكيد الموعد."}
+      </p>
+    </div>
+  </div>
+)}
+
+{submitStatus === 'error' && (
+  <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-button">
+    <p className="font-semibold text-destructive">
+      {currentLanguage === 'fr' ? "Erreur d'envoi. Réessayez." : "حدث خطأ أثناء الإرسال. حاول مرة أخرى."}
+    </p>
+  </div>
+)}
+
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Personal Information */}
           <div>
@@ -230,12 +316,21 @@ const BookingModal = ({ isOpen, onClose, serviceId, currentLanguage }: BookingMo
 
           {/* Submit Button */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button
-              type="submit"
-              className="flex-1 px-6 py-4 gradient-primary text-white font-heading font-semibold rounded-button hover:gradient-primary-hover transition-all shadow-interactive"
-            >
-              {currentLanguage === 'fr' ? 'Confirmer le Rendez-vous' : 'تأكيد الموعد'}
-            </button>
+      <button
+  type="submit"
+  disabled={isSubmitting}
+  className="flex-1 px-6 py-4 gradient-primary text-white font-heading font-semibold rounded-button hover:gradient-primary-hover transition-all shadow-interactive disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+>
+  {isSubmitting ? (
+    <>
+      <Icon name="ArrowPathIcon" size={20} className="animate-spin" />
+      <span>{currentLanguage === 'fr' ? 'Envoi...' : 'جاري الإرسال...'}</span>
+    </>
+  ) : (
+    <span>{currentLanguage === 'fr' ? 'Confirmer le Rendez-vous' : 'تأكيد الموعد'}</span>
+  )}
+</button>
+
             <button
               type="button"
               onClick={onClose}

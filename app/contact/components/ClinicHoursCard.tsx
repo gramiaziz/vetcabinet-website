@@ -22,7 +22,7 @@ export default function ClinicHoursCard({ currentLanguage }: ClinicHoursCardProp
 
   return (
     <div className="bg-card rounded-card p-6 shadow-card">
-      <div className="flex items-center space-x-3 mb-6">
+      <div className="flex items-center gap-3 mb-6">
         <div className="w-12 h-12 bg-primary rounded-button flex items-center justify-center">
           <Icon name="ClockIcon" size={24} className="text-white" />
         </div>
@@ -31,7 +31,7 @@ export default function ClinicHoursCard({ currentLanguage }: ClinicHoursCardProp
         </h3>
       </div>
 
-      <div className="space-y-4">
+      <div className="gap-4">
         {schedule.map((item, index) => (
           <div
             key={index}

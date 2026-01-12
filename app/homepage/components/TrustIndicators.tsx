@@ -124,7 +124,7 @@ const TrustIndicators = ({ currentLanguage }: TrustIndicatorsProps) => {
                 <span>{currentLanguage === 'fr' ? 'Appeler' : 'اتصل'}</span>
               </a>
               <a
-                href="https://wa.me/21694273313"
+                href="https://wa.me/21622024232"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 px-6 py-3 bg-whatsapp text-whatsapp-foreground font-heading font-semibold rounded-button hover:bg-whatsapp/90 transition-all"

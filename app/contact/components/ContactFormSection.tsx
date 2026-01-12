@@ -44,7 +44,7 @@ export default function ContactFormSection({ currentLanguage }: ContactFormSecti
   if (!isHydrated) {
     return (
       <div className="bg-card rounded-card p-8 shadow-card">
-        <div className="animate-pulse space-y-4">
+        <div className="animate-pulse gap-4">
           <div className="h-8 bg-muted rounded w-1/3"></div>
           <div className="h-12 bg-muted rounded"></div>
           <div className="h-12 bg-muted rounded"></div>
@@ -78,8 +78,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setSubmitStatus("idle");
 
   try {
-    const scriptUrl =
-      "https://script.google.com/macros/s/AKfycbyN0LfUnnL_q-2iGw5LLrbcKZBSJ9OzOuJouJltZ_mkVhSdVYRV8hGVNZzd3IFqNKyL8w/exec";
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!;
 
     const body = new URLSearchParams({
       name: formData.name,
@@ -93,7 +92,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       currentLanguage,
     });
 
-    const res = await fetch(scriptUrl, {
+    const res = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
       method: "POST",
       body,
     });
@@ -134,7 +133,7 @@ if (!json.ok) throw new Error(json.error || "Failed");
 
   return (
     <div className="bg-card rounded-card p-8 shadow-card">
-      <div className="flex items-center space-x-3 mb-6">
+      <div className="flex items-center gap-3 mb-6">
         <div className="w-12 h-12 bg-accent rounded-button flex items-center justify-center">
           <Icon name="CalendarIcon" size={24} className="text-white" />
         </div>
@@ -149,7 +148,7 @@ if (!json.ok) throw new Error(json.error || "Failed");
       </div>
 
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-button flex items-start space-x-3">
+        <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-button flex items-start gap-3">
           <Icon name="CheckCircleIcon" size={24} className="text-success flex-shrink-0" variant="solid" />
           <div>
             <p className="font-semibold text-success mb-1">
@@ -305,7 +304,7 @@ if (!json.ok) throw new Error(json.error || "Failed");
           />
         </div>
 
-        <div className="flex items-start space-x-3 p-4 bg-muted rounded-button">
+        <div className="flex items-start gap-3 p-4 bg-muted rounded-button">
           <Icon name="InformationCircleIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             {currentLanguage === 'fr' ?'Votre demande sera traitée dans les 24 heures. Pour les urgences, veuillez nous contacter directement par téléphone.' :'سيتم معالجة طلبك خلال 24 ساعة. للطوارئ، يرجى الاتصال بنا مباشرة عبر الهاتف.'}

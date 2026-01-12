@@ -99,7 +99,7 @@ const LocationSection = ({ currentLanguage }: LocationSectionProps) => {
                 className="border-0"
               />
               <div className="absolute top-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-button p-4 shadow-card">
-                <div className="flex items-start space-x-3">
+                <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-button gradient-primary flex items-center justify-center flex-shrink-0">
                     <Icon name="MapPinIcon" size={20} className="text-white" variant="solid" />
                   </div>
@@ -119,7 +119,7 @@ const LocationSection = ({ currentLanguage }: LocationSectionProps) => {
           {/* Contact Info Column */}
           <div className="space-y-8">
             {/* Contact Methods */}
-            <div className="space-y-4">
+            <div className="gap-4">
               <h3 className="font-heading font-bold text-2xl text-foreground mb-6">
                 {currentLanguage === 'fr' ? 'Contactez-Nous' : 'اتصل بنا'}
               </h3>
@@ -151,7 +151,7 @@ const LocationSection = ({ currentLanguage }: LocationSectionProps) => {
                 <Icon name="ClockIcon" size={24} className="text-primary" />
                 <span>{currentLanguage === 'fr' ? 'Horaires d\'Ouverture' : 'ساعات العمل'}</span>
               </h3>
-              <div className="space-y-4">
+              <div className="gap-4">
                 {openingHours.map((schedule, index) => (
                   <div
                     key={index}
@@ -160,7 +160,7 @@ const LocationSection = ({ currentLanguage }: LocationSectionProps) => {
                         ? 'bg-error/10 border border-error/20' :'bg-muted'
                     }`}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-3">
                       <Icon 
                         name={schedule.icon as any} 
                         size={20} 
@@ -191,7 +191,7 @@ const LocationSection = ({ currentLanguage }: LocationSectionProps) => {
                 </span>
               </a>
               <a
-                href="https://wa.me/21612345678"
+                href="https://wa.me/21622024232"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center justify-center p-6 bg-whatsapp text-whatsapp-foreground rounded-button hover:bg-whatsapp/90 transition-all text-center"

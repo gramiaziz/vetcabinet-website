@@ -112,7 +112,7 @@ const ServiceFAQ = ({ currentLanguage }: ServiceFAQProps) => {
           </div>
 
           {/* FAQ Accordion */}
-          <div className="space-y-4">
+          <div className="gap-4">
             {filteredFAQs.map((faq, index) => (
               <div
                 key={index}
@@ -154,14 +154,14 @@ const ServiceFAQ = ({ currentLanguage }: ServiceFAQProps) => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+21612345678"
+                href="tel:+21622024232"
                 className="flex items-center space-x-2 px-6 py-3 gradient-primary text-white font-heading font-semibold rounded-button hover:gradient-primary-hover transition-all shadow-card"
               >
                 <Icon name="PhoneIcon" size={20} />
                 <span>{currentLanguage === 'fr' ? 'Appelez-nous' : 'اتصل بنا'}</span>
               </a>
               <a
-                href="https://wa.me/21612345678"
+                href="https://wa.me/21622024232"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-6 py-3 bg-whatsapp text-white font-heading font-semibold rounded-button hover:bg-whatsapp/90 transition-all shadow-card"

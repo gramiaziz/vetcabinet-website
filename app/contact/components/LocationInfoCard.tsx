@@ -46,7 +46,7 @@ export default function LocationInfoCard({ currentLanguage }: LocationInfoCardPr
 
   return (
     <div className="bg-card rounded-card p-6 shadow-card">
-      <div className="flex items-center space-x-3 mb-6">
+      <div className="flex items-center gap-3 mb-6">
         <div className="w-12 h-12 bg-secondary rounded-button flex items-center justify-center">
           <Icon name="BuildingOffice2Icon" size={24} className="text-white" />
         </div>
@@ -55,7 +55,7 @@ export default function LocationInfoCard({ currentLanguage }: LocationInfoCardPr
         </h3>
       </div>
 
-      <div className="space-y-4">
+      <div className="gap-4">
         {locationDetails.map((detail, index) => (
           <div key={index} className="flex items-start space-x-4">
             <div className="w-10 h-10 bg-muted rounded-button flex items-center justify-center flex-shrink-0">

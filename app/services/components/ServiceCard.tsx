@@ -60,21 +60,7 @@ const ServiceCard = ({ service, currentLanguage, onBooking }: ServiceCardProps) 
           ))}
         </ul>
 
-        {/* Price & Duration */}
-        <div className="flex items-center justify-between mb-6 pb-6 border-b border-border">
-          <div>
-            <p className="text-xs text-muted-foreground mb-1">
-              {currentLanguage === 'fr' ? 'À partir de' : 'ابتداءً من'}
-            </p>
-            <p className="font-heading font-bold text-xl text-primary">{service.priceRange}</p>
-          </div>
-          <div className="text-right">
-            <p className="text-xs text-muted-foreground mb-1">
-              {currentLanguage === 'fr' ? 'Durée' : 'المدة'}
-            </p>
-            <p className="font-medium text-foreground">{service.duration}</p>
-          </div>
-        </div>
+       
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">

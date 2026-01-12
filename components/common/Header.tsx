@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/context/LanguageContext';
+import AppImage from '../ui/AppImage';
 
 
 interface HeaderProps {
@@ -11,19 +13,15 @@ interface HeaderProps {
 
 const Header = ({ className = '' }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<'fr' | 'ar'>('fr');
-
+  const { currentLanguage, toggleLang } = useLanguage();
   const navigationItems = [
     { label: 'Accueil', labelAr: 'الرئيسية', href: '/homepage' },
     { label: 'Services', labelAr: 'الخدمات', href: '/services' },
     /*{ label: 'À Propos', labelAr: 'من نحن', href: '/about' },*/
     /*{ label: 'Témoignages', labelAr: 'الشهادات', href: '/testimonials' },*/
-   /* { label: 'Ressources', labelAr: 'الموارد', href: '/resources' },*/
+    /* { label: 'Ressources', labelAr: 'الموارد', href: '/resources' },*/
   ];
 
-  const toggleLanguage = () => {
-    setCurrentLanguage(prev => prev === 'fr' ? 'ar' : 'fr');
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(prev => !prev);
@@ -33,33 +31,27 @@ const Header = ({ className = '' }: HeaderProps) => {
     <header className={`fixed top-0 left-0 right-0 z-50 bg-card shadow-md ${className}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo Section */}
-          <Link href="/homepage" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
-            <div className="relative w-12 h-12">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FF6B35" />
-                    <stop offset="50%" stopColor="#F7931E" />
-                    <stop offset="100%" stopColor="#FF69B4" />
-                  </linearGradient>
-                </defs>
-                <circle cx="24" cy="24" r="22" fill="url(#logoGradient)" opacity="0.1" />
-                <path d="M24 8C15.163 8 8 15.163 8 24C8 32.837 15.163 40 24 40C32.837 40 40 32.837 40 24C40 15.163 32.837 8 24 8ZM24 12C30.627 12 36 17.373 36 24C36 30.627 30.627 36 24 36C17.373 36 12 30.627 12 24C12 17.373 17.373 12 24 12Z" fill="url(#logoGradient)" />
-                <path d="M18 22C19.105 22 20 21.105 20 20C20 18.895 19.105 18 18 18C16.895 18 16 18.895 16 20C16 21.105 16.895 22 18 22Z" fill="url(#logoGradient)" />
-                <path d="M30 22C31.105 22 32 21.105 32 20C32 18.895 31.105 18 30 18C28.895 18 28 18.895 28 20C28 21.105 28.895 22 30 22Z" fill="url(#logoGradient)" />
-                <path d="M24 32C27.314 32 30 29.314 30 26H18C18 29.314 20.686 32 24 32Z" fill="url(#logoGradient)" />
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-bold text-lg text-primary leading-tight">
-                ANIMAUX D&apos;ABORD
-              </span>
-              <span className="text-xs text-muted-foreground font-medium">
-                Clinique Vétérinaire
-              </span>
-            </div>
-          </Link>
+         {/* Logo Section */}
+<Link href="/homepage" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+  <div className="relative w-11 h-11 lg:w-12 lg:h-12 flex-shrink-0">
+    <AppImage
+      src="/images/logo.png"
+      alt="Logo"
+      className="w-full h-full object-contain"
+      priority
+    />
+  </div>
+
+  <div className="flex flex-col leading-tight">
+      <span className="font-heading font-bold text-base lg:text-lg text-brand leading-tight">
+      ANIMAUX D&apos;ABORD
+    </span>
+    <span className="text-xs text-muted-foreground font-medium">
+      Cabinet Vétérinaire
+    </span>
+  </div>
+</Link>
+
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
@@ -78,7 +70,7 @@ const Header = ({ className = '' }: HeaderProps) => {
           <div className="hidden lg:flex items-center space-x-4">
             {/* Language Toggle */}
             <button
-              onClick={toggleLanguage}
+              onClick={toggleLang}
               className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-button hover:bg-muted"
               aria-label="Toggle language"
             >
@@ -136,10 +128,11 @@ const Header = ({ className = '' }: HeaderProps) => {
 
             {/* Mobile Language Toggle */}
             <button
-              onClick={toggleLanguage}
+              onClick={toggleLang}
               className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-muted rounded-button transition-colors"
             >
               <span>{currentLanguage === 'fr' ? 'Langue / اللغة' : 'اللغة / Langue'}</span>
+
               <Icon name="LanguageIcon" size={20} />
             </button>
 

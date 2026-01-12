@@ -4,7 +4,7 @@ import EmergencyFloatingButton from '@/components/common/EmergencyFloatingButton
 import ServicesInteractive from './components/ServicesInteractive';
 
 export const metadata: Metadata = {
-  title: 'Services Vétérinaires - Animaux D\'Abord',
+  title: 'Animaux D\'Abord - Services Vétérinaires',
   description: 'Découvrez nos services vétérinaires complets à Manouba : vaccination, consultation, chirurgie, ostéopathie, toilettage, médicaments et alimentation spécialisée. Soins de qualité avec urgences 24/7.',
 };
 

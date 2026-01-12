@@ -191,7 +191,7 @@ const ServiceComparison = ({ currentLanguage }: ServiceComparisonProps) => {
                     {features.map((feature, featureIndex) => {
                       const hasFeature = pkgIndex === 0 ? feature.basic : pkgIndex === 1 ? feature.standard : feature.premium;
                       return (
-                        <li key={featureIndex} className="flex items-center space-x-3">
+                        <li key={featureIndex} className="flex items-center gap-3">
                           {hasFeature ? (
                             <Icon name="CheckCircleIcon" size={20} className="text-success flex-shrink-0" variant="solid" />
                           ) : (

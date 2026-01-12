@@ -18,6 +18,10 @@ module.exports = {
     },
     extend: {
       colors: {
+       brand: {
+      DEFAULT: '#E07A2F',
+      dark: '#C66523',
+    },
         border: "var(--color-border)", /* gray-200 */
         input: "var(--color-input)", /* gray-200 */
         ring: "var(--color-ring)", /* orange-600 */

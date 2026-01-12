@@ -90,7 +90,7 @@ const HeroSection = ({ currentLanguage }: HeroSectionProps) => {
             </div>
 
             {/* Headline */}
-            <div className="space-y-4">
+            <div className="gap-4">
               <h1 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-foreground leading-tight">
                 {lang.headline}
               </h1>

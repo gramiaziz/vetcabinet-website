@@ -7,6 +7,7 @@ import ServiceComparison from './ServiceComparison';
 import ServiceFAQ from './ServiceFAQ';
 import CaseStudies from './CaseStudies';
 import BookingModal from './BookingModal';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Service {
   id: string;
@@ -27,16 +28,12 @@ interface Service {
 
 const ServicesInteractive = () => {
   const [isHydrated, setIsHydrated] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<'fr' | 'ar'>('fr');
+   const { currentLanguage } = useLanguage();
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState<string>('');
 
   useEffect(() => {
     setIsHydrated(true);
-    const savedLanguage = localStorage.getItem('language') as 'fr' | 'ar' | null;
-    if (savedLanguage) {
-      setCurrentLanguage(savedLanguage);
-    }
   }, []);
 
   const services: Service[] = [

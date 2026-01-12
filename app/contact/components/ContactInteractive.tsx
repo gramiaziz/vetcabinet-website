@@ -7,6 +7,8 @@ import LocationInfoCard from './LocationInfoCard';
 import EmergencyContactSection from './EmergencyContactSection';
 import ContactFormSection from './ContactFormSection';
 import GoogleMapSection from './GoogleMapSection';
+import { useLanguage } from '@/context/LanguageContext';
+
 
 interface ContactMethod {
   icon: string;
@@ -22,14 +24,10 @@ interface ContactMethod {
 
 export default function ContactInteractive() {
   const [isHydrated, setIsHydrated] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<'fr' | 'ar'>('fr');
+    const { currentLanguage } = useLanguage();
 
-  useEffect(() => {
+ useEffect(() => {
     setIsHydrated(true);
-    const savedLanguage = localStorage.getItem('preferredLanguage') as 'fr' | 'ar' | null;
-    if (savedLanguage) {
-      setCurrentLanguage(savedLanguage);
-    }
   }, []);
 
   if (!isHydrated) {
@@ -58,7 +56,7 @@ export default function ContactInteractive() {
       descriptionAr: "اتصل بنا لحجز موعد أو لأي استفسار",
       action: "Appeler maintenant",
       actionAr: "اتصل الآن",
-      href: "tel:+21612345678",
+      href: "tel:+21622024232",
       color: "bg-primary"
     },
     {
@@ -80,7 +78,7 @@ export default function ContactInteractive() {
       descriptionAr: "اتصل بنا عبر واتساب للحصول على رد سريع",
       action: "Ouvrir WhatsApp",
       actionAr: "فتح واتساب",
-      href: "https://wa.me/21612345678",
+      href: "https://wa.me/21622024232",
       color: "bg-whatsapp"
     }
   ];
