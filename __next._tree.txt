@@ -1,0 +1,2 @@
+:HL["/vetcabinet-website/_next/static/chunks/77958fc43f00e71d.css","style"]
+0:{"buildId":"a2o_3qIwM77Qleh3fQPDU","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

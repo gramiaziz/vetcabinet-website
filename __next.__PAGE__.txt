@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[57263,["/vetcabinet-website/_next/static/chunks/f41474ea86988666.js","/vetcabinet-website/_next/static/chunks/ea6891ed077b08d2.js","/vetcabinet-website/_next/static/chunks/e1f06ad6fd44215f.js","/vetcabinet-website/_next/static/chunks/d09fc11002c415e4.js"],"default"]
+3:I[97367,["/vetcabinet-website/_next/static/chunks/ff1a16fafef87110.js","/vetcabinet-website/_next/static/chunks/1acd74ad7c273936.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"a2o_3qIwM77Qleh3fQPDU","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/vetcabinet-website/_next/static/chunks/ea6891ed077b08d2.js","async":true}],["$","script","script-1",{"src":"/vetcabinet-website/_next/static/chunks/e1f06ad6fd44215f.js","async":true}],["$","script","script-2",{"src":"/vetcabinet-website/_next/static/chunks/d09fc11002c415e4.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
