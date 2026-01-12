@@ -32,7 +32,7 @@ const Header = ({ className = '' }: HeaderProps) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
          {/* Logo Section */}
-<Link href="/homepage" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+<Link href="/homepage"   className="flex items-center gap-2 hover:opacity-90 transition-opacity">
   <div className="relative w-11 h-11 lg:w-12 lg:h-12 flex-shrink-0">
     <AppImage
       src="/images/logo.png"
@@ -43,9 +43,10 @@ const Header = ({ className = '' }: HeaderProps) => {
   </div>
 
   <div className="flex flex-col leading-tight">
-      <span className="font-heading font-bold text-base lg:text-lg text-brand leading-tight">
-      ANIMAUX D&apos;ABORD
-    </span>
+<span className="font-heading font-bold text-base lg:text-lg bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent leading-tight">
+  ANIMAUX D&apos;ABORD
+</span>
+
     <span className="text-xs text-muted-foreground font-medium">
       Cabinet Vétérinaire
     </span>
