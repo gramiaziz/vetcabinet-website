@@ -10,8 +10,15 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Animaux D\'Abord - Cabinet Vétérinaire ',
-  description: 'Bienvenue chez Animaux D\'Abord, votre clinique vétérinaire de confiance à Manouba. Nous offrons des soins complets pour vos animaux de compagnie, y compris des consultations, des urgences 24/7, des chirurgies et des services de bien-être. Notre équipe bilingue français-arabe est dédiée à la santé et au bonheur de vos animaux.',
-  
+  description: 'Bienvenue chez Animaux D\'Abord, votre cabinet vétérinaire de confiance à Manouba. Nous offrons des soins complets pour vos animaux de compagnie, y compris des consultations, des urgences 24/7, des chirurgies et des services de bien-être. Notre équipe bilingue français-arabe est dédiée à la santé et au bonheur de vos animaux.',
+   keywords: [
+    'vétérinaire Manouba',
+    'cabinet vétérinaire Tunis',
+    'vétérinaire chiens chats',
+    'urgences vétérinaires Tunis',
+    'Dr Asma GNAOUI',
+    'clinique vétérinaire Manouba',
+  ],
 };
 
 export default function RootLayout({

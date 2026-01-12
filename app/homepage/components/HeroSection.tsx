@@ -152,7 +152,7 @@ const HeroSection = ({ currentLanguage }: HeroSectionProps) => {
             <div className="relative rounded-card overflow-hidden shadow-card">
              <AppImage
   src="/images/Asma.jpg"
-  alt="Female veterinarian in white coat examining a golden retriever dog with a stethoscope in a modern clinic"
+  alt="Dr. Asma GNAOUI, vétérinaire certifiée - cabinet vétérinaire Manouba"
   className="w-full h-[500px] lg:h-[600px] object-cover"
 />
 
